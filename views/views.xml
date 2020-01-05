@@ -26,26 +26,111 @@
 
     <template id="vit_spk.spk_report_document">
     <div class="page" style="font-size: 10px;">
-
-      <h3 style="text-align: left;">SURAT PERINTAH KERJA</h3>
-
+    <h3 style="text-align: center;">SURAT PERINTAH KERJA</h3>
     </div>
 
-      <div class="oe-structure">
-      <div class="container">
+      <div class="oe-structure">   
         <div class="row">
           <div class="col-6">
-            1 of 2
+            <!-- <span t-field="doc.picking_type_id"/> -->
+            <div t-field="doc.picking_type_id.warehouse_id.partner_id"
+                 t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
           </div>
           <div class="col-6">
-            2 of 2
+            Nomor   : <span t-field="doc.name"/>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-6">
+            Kepada Yth,
+          </div>
+          <div class="col-6">
+            Tanggal : <span t-field="doc.scheduled_date"/>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <!-- <span t-field="doc.partner_id"/> -->
+               <div t-if="doc.partner_id" name="partner_header">
+                    <div t-field="doc.partner_id"
+                         t-options='{"widget": "contact", "fields": ["name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                         <p t-if="doc.sudo().partner_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="doc.sudo().partner_id.vat"/></p>
+                    </div>
+          </div>
+          <div class="col-6">
+            
+          </div>
+        </div>
+
+      <div>
+        <p>Dengan ini kami memohon bantuan bapak, untuk memproses item berikut tanggal  <span t-field="doc.date_done"/></p>
       </div>
+      <!-- Tabel Isi -->
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th rowspan="2">ITEM NAME</th>
+            <th rowspan="2">PLT</th>
+            <th colspan="2">KIRIM</th>
+            <th scope="col">CHECK</th>
+            <th colspan="2">KEMBALI</th>
+            <th scope="col">CHECK</th>
+            <th rowspan="2">KETERANGAN</th>
+          </tr>
+          <tr>
+            <th scope="col">BOX</th>
+            <th scope="col">KG</th>
+            <th scope="col">SUBCOUNT</th>
+            <th scope="col">BOX</th>
+            <th scope="col">KG</th>
+            <th scope="col">NAI</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
 
-        <span t-field="doc.name"/>
-
+      <div>
+        <p>Catatan    :  <span t-field="doc.note"/> </p>
+      </div>
+      
         <!-- Table TTD -->
+        <div class="row align-items-end">
+        <div class="col">
         <table class="table">
           <tr>
             <td>
@@ -96,6 +181,8 @@
           </tr>
 
         </table>
+      </div>
+    </div>
       </div>
     </template>
 
