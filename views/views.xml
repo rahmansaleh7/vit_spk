@@ -1,0 +1,103 @@
+<odoo>
+  <data>
+    
+    <!-- Inherit Action Report Print -->
+    <report 
+        id="report_spk_menu"
+        string="Surat Perintah Kerja"
+        model="stock.picking" 
+        report_type="qweb-pdf"
+        paperformat="vit_spk.paperformat_report_surat_kerja"
+        file="vit_spk.spk" 
+        name="vit_spk.spk_report" 
+    />
+
+    <!-- HTML Container -->
+    <template id="vit_spk.spk_report">
+      <t t-call="web.html_container">
+        <t t-call="vit_spk.external_layout_label" >
+          <t t-foreach="docs" t-as="doc">
+            <t t-call="vit_spk.spk_report_document"/>
+          </t>
+        </t>
+      </t>
+    </template>
+
+
+    <template id="vit_spk.spk_report_document">
+    <div class="page" style="font-size: 10px;">
+
+      <h3 style="text-align: left;">SURAT PERINTAH KERJA</h3>
+
+    </div>
+
+      <div class="oe-structure">
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            1 of 2
+          </div>
+          <div class="col-6">
+            2 of 2
+          </div>
+        </div>
+      </div>
+
+        <span t-field="doc.name"/>
+
+        <!-- Table TTD -->
+        <table class="table">
+          <tr>
+            <td>
+              Pemeriksa
+              <br></br>
+              <br></br>
+              <br></br>
+              Satpam
+            </td>
+            <td>
+              Pembawa Kendaraan
+              <br></br>
+              <br></br>
+              <br></br>
+              Driver
+            </td>
+            <td>
+              Penerima
+              <br></br>
+              <br></br>
+              <br></br>
+              Bagian Subcount
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Dir/Mgr/SPV
+              <br></br>
+              <br></br>
+              <br></br>
+              Bagian PPIC
+            </td>
+            <td>
+              Dir/Mgr/SPV
+              <br></br>
+              <br></br>
+              <br></br>
+              Bagian Purchasing
+            </td>
+            <td>
+              Dir/Mgr/SPV
+              <br></br>
+              <br></br>
+              <br></br>
+              Bagian Warehouse
+            </td>
+          </tr>
+
+        </table>
+      </div>
+    </template>
+
+  </data>
+</odoo>
